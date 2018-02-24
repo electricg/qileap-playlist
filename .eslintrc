@@ -1,5 +1,6 @@
 {
     "env": {
+        "browser": true,
         "es6": true,
         "node": true
     },
@@ -26,18 +27,28 @@
             "named": "never",
             "asyncArrow": "always"
         }],
+        "jsx-quotes": "error",
+        "react/jsx-uses-react": "warn",
+        "react/jsx-uses-vars": "warn",
+        "react/jsx-no-duplicate-props": "error",
+        "react/jsx-no-undef": "error",
         "prettier/prettier": ["error", {
             "printWidth": 80,
             "singleQuote": true,
             "trailingComma": "none",
             "bracketSpacing": true,
+            "jsxBracketSameLine": false,
             "tabWidth": 4
         }]
     },
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
     "plugins": [
+        "react",
         "prettier"
     ]
 }

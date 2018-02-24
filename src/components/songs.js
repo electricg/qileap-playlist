@@ -12,6 +12,7 @@ const Songs = ({ songs = [] }) => {
         <dl>
             {songs.map(item => (
                 <Song
+                    key={item.id}
                     id={item.id}
                     title={item.title}
                     artist={item.artist}
