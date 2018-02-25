@@ -21,9 +21,9 @@ const Songs = ({ songs = [], playlist }) => {
                 </tr>
             </thead>
             <tbody>
-                {songs.map(item => (
+                {songs.map((item, index) => (
                     <Song
-                        key={item.id}
+                        key={index}
                         id={item.id}
                         title={item.title}
                         artist={item.artist}

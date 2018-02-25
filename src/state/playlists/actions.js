@@ -15,19 +15,23 @@ export const getPlaylists = async () => {
 
 export const getPlaylistsWithSongs = async (library = []) => {
     const playlists = await getPlaylists();
-    console.log(playlists);
+    const libraryById = library.reduce((accumulator, song) => {
+        accumulator[song.id] = song;
 
-    return playlists.map(playlist => {
+        return accumulator;
+    }, {});
+
+    const playlistsExtended = playlists.map(playlist => {
         const { id, name, songs } = playlist;
 
         return {
             id,
             name,
-            songs: library.filter(item => {
-                return songs.includes(item.id);
-            })
+            songs: songs.map(song => libraryById[song])
         };
     });
+
+    return playlistsExtended;
 };
 
 export const getPlaylistById = (id, playlists = []) => {
@@ -39,6 +43,25 @@ export const getPlaylistById = (id, playlists = []) => {
 };
 
 export const addSongToPlaylist = async (songId, playlist) => {
+    const { id, name, songs } = playlist;
+
+    const songsArray = songs.map(s => s.id);
+    songsArray.push(songId);
+
+    try {
+        const { data } = await axios.post(`${BASE_URL}/playlist/${id}/`, {
+            name,
+            songs: songsArray
+        });
+        Router.push(`/?playlist=${id}`);
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const removeSongToPlaylist = async (songId, playlist) => {
     const { id, name, songs } = playlist;
 
     const songsArray = songs.map(s => s.id);
