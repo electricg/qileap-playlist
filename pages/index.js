@@ -32,9 +32,9 @@ class IndexPage extends Component {
         return (
             <div>
                 <Head>
-                    <meta charset="utf-8" />
+                    <meta charSet="utf-8" />
                     <meta
-                        http-equiv="X-UA-Compatible"
+                        httpEquiv="X-UA-Compatible"
                         content="IE=edge,chrome=1"
                     />
                     <title>Playlist</title>
