@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
-import Playlist from './playlist';
+const PlaylistItem = ({ playlist, current, children }) => {
+    if (playlist !== current) {
+        return (
+            <Link href={`/?playlist=${current}`}>
+                <a>{children}</a>
+            </Link>
+        );
+    }
 
-const Playlists = ({ playlists = [] }) => {
+    return children;
+};
+
+const Playlists = ({ playlists = [], playlist }) => {
     if (!playlists.length) {
         return <div>No playlists found</div>;
     }
@@ -11,20 +22,23 @@ const Playlists = ({ playlists = [] }) => {
     return (
         <section>
             <h2>Playlists</h2>
-            {playlists.map(item => (
-                <Playlist
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    songs={item.songs}
-                />
-            ))}
+            <ul>
+                {playlists.map(item => (
+                    <li key={item.id}>
+                        <PlaylistItem playlist={playlist} current={item.id}>
+                            <span>{item.name}</span>{' '}
+                            <span>[{item.songs.length} songs]</span>
+                        </PlaylistItem>
+                    </li>
+                ))}
+            </ul>
         </section>
     );
 };
 
 Playlists.propTypes = {
-    songs: PropTypes.array
+    songs: PropTypes.array,
+    playlist: PropTypes.number
 };
 
 export default Playlists;

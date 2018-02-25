@@ -1,44 +1,31 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Song = ({ id, title, artist, album, duration }) => {
+const Add = ({}) => {
+    return <button>add</button>;
+};
+
+const Song = ({ id, title, artist, album, duration, playlist }) => {
     if (id == null) {
         return null;
     }
 
+    const add = playlist != null ? 'add' : '';
+
     return (
-        <Fragment>
-            <dt>Id</dt>
-            <dd>{id}</dd>
+        <tr>
+            <td>{id}</td>
 
-            {title && (
-                <Fragment>
-                    <dt>Title</dt>
-                    <dd>{title}</dd>
-                </Fragment>
-            )}
+            <td>{title}</td>
 
-            {artist && (
-                <Fragment>
-                    <dt>Artist</dt>
-                    <dd>{artist}</dd>
-                </Fragment>
-            )}
+            <td>{artist}</td>
 
-            {album && (
-                <Fragment>
-                    <dt>Album</dt>
-                    <dd>{album}</dd>
-                </Fragment>
-            )}
+            <td>{album}</td>
 
-            {duration && (
-                <Fragment>
-                    <dt>Duration</dt>
-                    <dd>{duration}</dd>
-                </Fragment>
-            )}
-        </Fragment>
+            <td>{duration}</td>
+
+            <td>{add}</td>
+        </tr>
     );
 };
 
@@ -47,7 +34,8 @@ Song.propTypes = {
     title: PropTypes.string,
     artist: PropTypes.string,
     album: PropTypes.string,
-    duration: PropTypes.number
+    duration: PropTypes.number,
+    playlist: PropTypes.number
 };
 
 export default Song;

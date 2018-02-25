@@ -27,3 +27,11 @@ export const getPlaylistsWithSongs = async (library = []) => {
         };
     });
 };
+
+export const getPlaylistById = (id, playlists = []) => {
+    return (
+        playlists.find(p => {
+            return p.id === parseInt(id, 10);
+        }) || {}
+    );
+};
