@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Songs from './songs';
@@ -9,10 +9,10 @@ const Library = ({ songs = [] }) => {
     }
 
     return (
-        <Fragment>
+        <section>
             <h2>Library</h2>
             <Songs songs={songs} />
-        </Fragment>
+        </section>
     );
 };
 
