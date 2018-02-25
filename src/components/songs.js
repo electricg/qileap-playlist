@@ -39,7 +39,7 @@ const Songs = ({ songs = [], playlist }) => {
 
 Songs.propTypes = {
     songs: PropTypes.array,
-    playlist: PropTypes.number
+    playlist: PropTypes.object
 };
 
 export default Songs;

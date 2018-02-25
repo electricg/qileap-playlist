@@ -42,7 +42,7 @@ class AboutPage extends Component {
 
                 <Playlists playlists={playlists} playlist={playlist.id} />
 
-                <Library songs={songs} playlist={playlist.id} />
+                <Library songs={songs} playlist={playlist} />
             </div>
         );
     }

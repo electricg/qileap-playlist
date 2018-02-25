@@ -18,7 +18,7 @@ const Library = ({ songs = [], playlist }) => {
 
 Library.propTypes = {
     songs: PropTypes.array,
-    playlist: PropTypes.number
+    playlist: PropTypes.object
 };
 
 export default Library;
