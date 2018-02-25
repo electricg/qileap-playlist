@@ -22,7 +22,7 @@ export const getPlaylistsWithSongs = async (library = []) => {
     }, {});
 
     const playlistsExtended = playlists.map(playlist => {
-        const { id, name, songs } = playlist;
+        const { id, name, songs = [] } = playlist;
 
         return {
             id,
@@ -61,18 +61,12 @@ export const addSongToPlaylist = async (songId, playlist) => {
     }
 };
 
-export const removeSongToPlaylist = async (songId, playlist) => {
-    const { id, name, songs } = playlist;
-
-    const songsArray = songs.map(s => s.id);
-    songsArray.push(songId);
-
+export const createNewPlaylist = async name => {
     try {
-        const { data } = await axios.post(`${BASE_URL}/playlist/${id}/`, {
-            name,
-            songs: songsArray
+        const { data } = await axios.post(`${BASE_URL}/playlist/`, {
+            name
         });
-        Router.push(`/?playlist=${id}`);
+        Router.push(`/?playlist=${data.id}`);
 
         return data;
     } catch (error) {

@@ -11,8 +11,9 @@ import {
 import Library from '../src/components/library';
 import Playlists from '../src/components/playlists';
 import Playlist from '../src/components/playlist';
+import NewPlaylist from '../src/components/new-playlist';
 
-class AboutPage extends Component {
+class IndexPage extends Component {
     static async getInitialProps({ query }) {
         const songs = await getSongs();
         const playlists = await getPlaylistsWithSongs(songs);
@@ -44,13 +45,19 @@ class AboutPage extends Component {
                 </Head>
                 <h1>Playlist Challenge</h1>
 
-                {playlist && (
-                    <Playlist
-                        id={playlist.id}
-                        name={playlist.name}
-                        songs={playlist.songs}
-                    />
-                )}
+                <div>
+                    <Link href="/">
+                        <a>Home</a>
+                    </Link>
+                </div>
+
+                {playlist.id == null && <NewPlaylist />}
+
+                <Playlist
+                    id={playlist.id}
+                    name={playlist.name}
+                    songs={playlist.songs}
+                />
 
                 <Playlists playlists={playlists} playlist={playlist.id} />
 
@@ -60,4 +67,4 @@ class AboutPage extends Component {
     }
 }
 
-export default AboutPage;
+export default IndexPage;
