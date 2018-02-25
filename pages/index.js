@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 
 import { getSongs } from '../src/state/songs/actions';
 import {
-    getPlaylists,
     getPlaylistsWithSongs,
     getPlaylistById
 } from '../src/state/playlists/actions';
@@ -30,6 +30,18 @@ class AboutPage extends Component {
 
         return (
             <div>
+                <Head>
+                    <meta charset="utf-8" />
+                    <meta
+                        http-equiv="X-UA-Compatible"
+                        content="IE=edge,chrome=1"
+                    />
+                    <title>Playlist</title>
+                    <meta name="viewport" content="width=device-width" />
+
+                    <link rel="stylesheet" href="css/bootstrap.css" />
+                    <link rel="stylesheet" href="css/main.css" />
+                </Head>
                 <h1>Playlist Challenge</h1>
 
                 {playlist && (
