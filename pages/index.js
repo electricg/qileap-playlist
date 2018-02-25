@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import withRedux from 'next-redux-wrapper';
+
 import Link from 'next/link';
+
+import { initStore } from '../src/state/store';
 
 import { getSongs } from '../src/state/songs/actions';
 import {
@@ -12,9 +16,11 @@ import Library from '../src/components/library';
 import Playlists from '../src/components/playlists';
 import Playlist from '../src/components/playlist';
 
-class AboutPage extends Component {
-    static async getInitialProps({ query }) {
-        const songs = await getSongs();
+class IndexPage extends Component {
+    static async getInitialProps({ store, query }) {
+        const { dispatch, getState } = store;
+        const songs = [];
+        await dispatch(getSongs());
         const playlists = await getPlaylistsWithSongs(songs);
         const playlist = getPlaylistById(query.playlist, playlists);
 
@@ -48,4 +54,4 @@ class AboutPage extends Component {
     }
 }
 
-export default AboutPage;
+export default withRedux(initStore, state => state)(IndexPage);
